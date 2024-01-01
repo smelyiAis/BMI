@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BMI Calculator</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      padding-top: 5rem;
+    }
+
+    .footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background-color: #f8f9fa;
+      text-align: center;
+      padding: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="#">BMI Calculator</a>
+  </nav>
+
+  <!-- Content -->
+  <div class="container mt-5">
+    <h1 class="mb-4">BMI Calculator</h1>
+
+    <form id="bmiForm">
+      <div class="form-group">
+        <label for="weight">Weight (kg):</label>
+        <input type="number" class="form-control" id="weight" name="weight" required>
+      </div>
+
+      <div class="form-group">
+        <label for="height">Height (m):</label>
+        <input type="number" class="form-control" id="height" name="height" required>
+      </div>
+
+      <button type="button" class="btn btn-primary" onclick="calculateBMI()">Calculate BMI</button>
+    </form>
+
+    <div id="result" class="mt-4"></div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>Omarbek Aisultan | SE-2202</p>
+  </div>
+
+  <!-- Bootstrap JS and jQuery -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <!-- Custom JavaScript for Input Validation and BMI Calculation -->
+  <script>
+    function calculateBMI() {
+      // Input validation
+      var weightInput = document.getElementById('weight');
+      var heightInput = document.getElementById('height');
+
+      if (isNaN(weightInput.value) || isNaN(heightInput.value) || weightInput.value <= 0 || heightInput.value <= 0) {
+        alert('Please enter valid values for weight and height.');
+        return;
+      }
+
+      // BMI calculation
+      var weight = parseFloat(weightInput.value);
+      var height = parseFloat(heightInput.value);
+      var bmi = weight / (height * height);
+
+      // Interpretation
+      var interpretation;
+      if (bmi < 18.5) {
+        interpretation = 'Underweight';
+      } else if (bmi < 24.9) {
+        interpretation = 'Normal weight';
+      } else if (bmi < 29.9) {
+        interpretation = 'Overweight';
+      } else {
+        interpretation = 'Obese';
+      }
+
+      // Display result
+      document.getElementById('result').innerHTML = '<h2>BMI Result</h2>' +
+        '<p>Your BMI is ' + bmi.toFixed(2) + '</p>' +
+        '<p>Interpretation: ' + interpretation + '</p>';
+    }
+  </script>
+
+</body>
+
+</html>
