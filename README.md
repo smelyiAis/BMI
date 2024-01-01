@@ -1,2 +1,3 @@
 # BMI calculator implementation 
-### Student Omarbek Aisultan SE-2202
+### Student name: Omarbek Aisultan 
+### Group: SE-2202
